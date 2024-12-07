@@ -1,13 +1,27 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
-//STEP 1a: Function Prototypes
+//STEP 0a: Function Prototypes
 //-we need  sum_ascii() that receives a single string and returns the sum of that string's character's ASCII values. 
 int sum_ascii(const string& input);
 
 
 int main() {
+    //DELCARE & INITIALIZE VARIBALES
+    string test1 = "536B9DFC93AF";
+    string test2 = "1DA9D64D02A0";
+    string test3 = "666D109AA22E";
+    string test4 = "E1D2665B21EA";
+
+    const string DATA_FILE = "lab-37-data.txt"; // Constant for the data file name
+    ifstream infile(DATA_FILE);
+    string line;
+    long long grandTotal = 0; // Using long long to accommodate large sums
+    int lineCount = 0; // and of course, we keep track of the number of processed lines
+
+
     char a = 'A';
     cout << "Char a: "<< a << endl;
     cout << static_cast<int>(a) << endl;
@@ -16,12 +30,8 @@ int main() {
     cout << static_cast<char>(b) << endl;
 
     cout << "----------------------------------------------" << endl;
-    //Declare/Initialize Variables for testing
-    string test1 = "536B9DFC93AF";
-    string test2 = "1DA9D64D02A0";
-    string test3 = "666D109AA22E";
-    string test4 = "E1D2665B21EA";
 
+    //STEP 1 (TEST)
     cout << "just testing...." << endl;
 
     cout << "Sum of ASCII values in \"" << test1 << "\": "
@@ -38,10 +48,18 @@ int main() {
     cout << "Sum of ASCII values in \"" << test4 << "\": "
         << sum_ascii(test4) << endl;  // expecting 696
 
+    //STEP 2: Need to process a large dataset
+    
+    if (!infile.is_open()) {
+        cerr << "Error! Couldn't open file '" << DATA_FILE << endl;
+        cerr << "ensure file exists in the correct directory/or try again." << endl;
+        return 1; // Exit the program with an error code
+    }
+
     return 0;
 }
  
-//STEP 1b: Function Defintions
+//STEP 0b: Function Defintions
 //-we need  sum_ascii() that receives a single string and returns the sum of that string's character's ASCII values. 
 int sum_ascii(const string& input) {
     int total = 0;
