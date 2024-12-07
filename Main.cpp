@@ -1,3 +1,6 @@
+// COMSC-210 | Lab 37 | Anthony R. Sarabia
+// IDE used: Visual Studio
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -22,6 +25,7 @@ int main() {
     string line;
     long long grandTotal = 0; // Using long long to accommodate large sums
     int lineCount = 0; // and of course, we keep track of the number of processed lines
+    int entriesDisplayed = 0;
     string test1 = "536B9DFC93AF";
     string test2 = "1DA9D64D02A0";
     string test3 = "666D109AA22E";
@@ -100,13 +104,19 @@ int main() {
     }
     infile.close(); //close file
 
-    //OUTPUT
-    cout << "Grand Total of ASCII sums: " << grandTotal << endl; // expecting 69893419
-    cout << "Number of lines processed: " << lineCount << endl;
+    //OUTPUT (first 100 map entries)
+    for (auto it = hash_table.begin(); it != hash_table.end() && entriesDisplayed < MAX_DISPLAY; ++it, ++entriesDisplayed) {
+        cout << "Hash Index: " << it->first << endl;
+        cout << "Associated Codes:" << endl;
+        for (const auto& code : it->second) {
+            cout << "  " << code << endl;
+        }
+        cout << "-----------------------------" << endl;
+    }
     
     return 0;
 }
- 
+
 //STEP 0b: Function Defintions
 //-we need  sum_ascii() that receives a single string and returns the sum of that string's character's ASCII values. 
 int sum_ascii(const string& input) {
