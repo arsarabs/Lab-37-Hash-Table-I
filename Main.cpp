@@ -6,6 +6,7 @@ using namespace std;
 //STEP 0a: Function Prototypes
 //-we need  sum_ascii() that receives a single string and returns the sum of that string's character's ASCII values. 
 int sum_ascii(const string& input);
+int gen_hash_index(const string& input);
 
 
 int main() {
@@ -78,4 +79,8 @@ int sum_ascii(const string& input) {
         total += static_cast<int>(c); // this willl cast char to int 
     }
     return total; //forgot to return total haha
+}
+
+int gen_hash_index(const string& input) {
+    
 }
