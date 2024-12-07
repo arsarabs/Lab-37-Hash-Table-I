@@ -142,7 +142,19 @@ int gen_hash_index(const string& input) {
 }
 
 void print_entries(const map<int, list<string>>& hash_table) {
+    int entriesDisplayed = 0;
 
+    // Iterate through each key-value pair in the hash table
+    for (auto it = hash_table.begin(); it != hash_table.end() && entriesDisplayed < MAX_DISPLAY; ++it) {
+        // 'it->first' is the hash index, and 'it->second' is the list of codes associated with that index
+    }
+
+
+
+    // If no entries were displayed 
+    if (entriesDisplayed == 0) {
+        cout << "No entries to display" << endl;
+    }
 }
 bool search_key(const map<int, list<string>>& hash_table, const string& key) {
 
