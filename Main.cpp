@@ -6,7 +6,7 @@ int main() {
     char a = 'A';
     cout << a << endl;
     cout << (int)a << endl;
-    int b = 66;
+    int b = 66; 
     cout << b << endl;
     cout << (char)b << endl;
 
