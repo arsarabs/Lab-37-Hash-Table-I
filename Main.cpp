@@ -1,12 +1,18 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <map>
+#include <list>
+
 using namespace std;
 
-//STEP 0a: Function Prototypes
+//STEP 0a: Function Prototypes & Constants
 //-we need  sum_ascii() that receives a single string and returns the sum of that string's character's ASCII values. 
 int sum_ascii(const string& input);
 int gen_hash_index(const string& input);
+
+const int MODULUS = 97;   // prime number (for hashing)
+const int MAX_DISPLAY = 100; // max map entries to display
 
 
 int main() {
@@ -82,5 +88,6 @@ int sum_ascii(const string& input) {
 }
 
 int gen_hash_index(const string& input) {
-    
+    int ascii_sum = sum_ascii(input);
+    return ascii_sum % MODULUS;
 }
