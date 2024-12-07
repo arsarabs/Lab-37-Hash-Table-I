@@ -178,7 +178,20 @@ bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const
 
 }
 bool load_data(const string& filename, map<int, list<string>>& hash_table, long long& grandTotal, int& lineCount) {
+    ifstream infile(filename);
+    string line;
 
+    if (!infile.is_open()) {
+        cout << "Error! Couldn't open file '" << filename << "'\n";
+        cout << "Ensure the file exists in the correct directory and try again.\n";
+        return false;
+    }
+
+    while (getline(infile, line)) {
+        cout << "Warning: Skipping invalid line " << (lineCount + 1)
+            << " (Incorrect length: " << line.length() << ")\n";
+        continue;
+    }
 }
 bool save_data(const string& filename, const map<int, list<string>>& hash_table) {
 
