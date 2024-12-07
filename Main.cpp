@@ -17,18 +17,17 @@ const int MAX_DISPLAY = 100; // max map entries to display
 
 int main() {
     //DELCARE & INITIALIZE VARIBALES
-    string test1 = "536B9DFC93AF";
-    string test2 = "1DA9D64D02A0";
-    string test3 = "666D109AA22E";
-    string test4 = "E1D2665B21EA";
-
     const string DATA_FILE = "lab-37-data.txt"; // Constant for the data file name
     ifstream infile(DATA_FILE);
     string line;
     long long grandTotal = 0; // Using long long to accommodate large sums
     int lineCount = 0; // and of course, we keep track of the number of processed lines
+    string test1 = "536B9DFC93AF";
+    string test2 = "1DA9D64D02A0";
+    string test3 = "666D109AA22E";
+    string test4 = "E1D2665B21EA";
 
-
+    //onto the code
     char a = 'A';
     cout << "Char a: "<< a << endl;
     cout << static_cast<int>(a) << endl;
@@ -38,22 +37,36 @@ int main() {
 
     cout << "----------------------------------------------" << endl;
 
-    //STEP 1 (TEST)
-    cout << "just testing...." << endl;
-
+    //STEP 1 (& and now 3)
+    
+    //TEST 1
     cout << "Sum of ASCII values in \"" << test1 << "\": "
          << sum_ascii(test1) << endl; // expecting 729
+    cout << "Hash index for \"" << test1 << "\": "
+        << gen_hash_index(test1) << endl; 
 
-    cout << "Sum of ASCII values in \"" << test2 << "\": "
-        << sum_ascii(test2) << endl;  // expecting 692
+    //TEST 2
+    cout << "Sum of ASCII values in \"" << test1 << "\": "
+        << sum_ascii(test2) << endl; // expecting 729
+    cout << "Hash index for \"" << test1 << "\": "
+        << gen_hash_index(test2) << endl;
 
+    //TEST 3
+    cout << "Sum of ASCII values in \"" << test1 << "\": "
+        << sum_ascii(test3) << endl; // expecting 729
+    cout << "Hash index for \"" << test1 << "\": "
+        << gen_hash_index(test3) << endl;
 
-    cout << "Sum of ASCII values in \"" << test3 << "\": "
-        << sum_ascii(test3) << endl; // expecting 683
+    //TEST 4
+    cout << "Sum of ASCII values in \"" << test1 << "\": "
+        << sum_ascii(test4) << endl; // expecting 729
+    cout << "Hash index for \"" << test1 << "\": "
+        << gen_hash_index(test4) << endl;
 
+    cout << "----------------------------------------------" << endl;
 
-    cout << "Sum of ASCII values in \"" << test4 << "\": "
-        << sum_ascii(test4) << endl;  // expecting 696
+    //STEP 3: Creating/populating hash table
+    map<int, list<string>> hash_table;
 
     //STEP 2: Need to process a large dataset
     
