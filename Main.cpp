@@ -27,6 +27,10 @@ int main() {
     string test3 = "666D109AA22E";
     string test4 = "E1D2665B21EA";
 
+    //STEP 3: Creating/populating hash table
+    map<int, list<string>> hash_table;
+    int hash_index = gen_hash_index(line);
+
     //onto the code
     char a = 'A';
     cout << "Char a: "<< a << endl;
@@ -65,8 +69,7 @@ int main() {
 
     cout << "----------------------------------------------" << endl;
 
-    //STEP 3: Creating/populating hash table
-    map<int, list<string>> hash_table;
+    
 
     //STEP 2: Need to process a large dataset
     
@@ -77,6 +80,20 @@ int main() {
     }
 
     while (getline(infile, line)) {
+
+        //first, validate length of line
+
+        if (line.length() != 12) {
+            cout << "Warning: Skipping invalid line " << (lineCount + 1)
+                << " (Incorrect length: " << line.length() << ")" << endl;
+            continue;
+        }
+
+        //next
+        hash_table[hash_index].push_back(line); // this adds the current string 
+        // (`line`) to the list corresponding to `hash_index` in the hash table
+        lineCount++; //increment line count
+
         // Calculate the ASCII sum for the current line and add it to grand_total
         grandTotal += sum_ascii(line);
         lineCount++;
