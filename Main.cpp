@@ -9,12 +9,18 @@ int sum_ascii(const string& input);
 
 int main() {
     char a = 'A';
-    cout << a << endl;
-    cout << (int)a << endl;
+    cout << "Char a: "<< a << endl;
+    cout << static_cast<int>(a) << endl;
     int b = 66; 
-    cout << b << endl;
-    cout << (char)b << endl;
+    cout << "Int b: " << b << endl;
+    cout << static_cast<char>(b) << endl;
 
+    cout << "----------------------------------------------" << endl;
+    //Declare/Initialize Variables for testing
+    string test1 = "536B9DFC93AF";
+    string test2 = "536B9DFC93AF";
+    string test3 = "536B9DFC93AF";
+    string test4 = "536B9DFC93AF";
 
     return 0;
 }
