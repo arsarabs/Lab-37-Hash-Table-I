@@ -64,12 +64,9 @@ int main() {
     infile.close(); //close file
 
     //OUTPUT
-    cout << "Grand Total of ASCII sums: " << grandTotal << endl;
+    cout << "Grand Total of ASCII sums: " << grandTotal << endl; // expecting 69893419
     cout << "Number of lines processed: " << lineCount << endl;
-    cout << "Expected Grand Total: 69893419" << endl; 
-
     
-
     return 0;
 }
  
