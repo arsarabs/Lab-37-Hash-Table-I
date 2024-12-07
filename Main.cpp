@@ -19,6 +19,14 @@ int gen_hash_index(const string& input);
 const int MODULUS = 97;   // prime number (for hashing)
 const int MAX_DISPLAY = 100; // max map entries to display
 
+//new prototypes for our interactive menu
+void print_entries(const map<int, list<string>>& hash_table);
+bool search_key(const map<int, list<string>>& hash_table, const string& key);
+void add_key(map<int, list<string>>& hash_table, const string& key);
+bool remove_key(map<int, list<string>>& hash_table, const string& key);
+bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key);
+bool load_data(const string& filename, map<int, list<string>>& hash_table, long long& grandTotal, int& lineCount);
+bool save_data(const string& filename, const map<int, list<string>>& hash_table);
 
 int main() {
     //DELCARE & INITIALIZE VARIBALES
@@ -75,8 +83,7 @@ int main() {
 
     cout << "----------------------------------------------" << endl;
 
-    
-
+   
     //STEP 2: Need to process a large dataset
     
     if (!infile.is_open()) {
