@@ -56,6 +56,20 @@ int main() {
         return 1; // Exit the program with an error code
     }
 
+    while (getline(infile, line)) {
+        // Calculate the ASCII sum for the current line and add it to grand_total
+        grandTotal += sum_ascii(line);
+        lineCount++;
+    }
+    infile.close(); //close file
+
+    //OUTPUT
+    cout << "Grand Total of ASCII sums: " << grandTotal << endl;
+    cout << "Number of lines processed: " << lineCount << endl;
+    cout << "Expected Grand Total: 69893419" << endl; 
+
+    
+
     return 0;
 }
  
