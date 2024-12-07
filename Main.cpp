@@ -188,10 +188,25 @@ bool load_data(const string& filename, map<int, list<string>>& hash_table, long 
     }
 
     while (getline(infile, line)) {
-        cout << "Warning: Skipping invalid line " << (lineCount + 1)
-            << " (Incorrect length: " << line.length() << ")\n";
-        continue;
+        // Validate length of line
+        if (line.length() != 12) {
+            cout << "Warning: Skipping invalid line " << (lineCount + 1)
+                << " (Incorrect length: " << line.length() << ")\n";
+            continue;
+        }
+
+        // Generate hash index for the current line
+        int hash_index = gen_hash_index(line);
+
+        // Add the line to the hash table
+        hash_table[hash_index].push_back(line);
+        lineCount++;
+
+        // Calculate the ASCII sum for the current line and add it to grandTotal
+        grandTotal += sum_ascii(line);
     }
+    infile.close(); // Close the file
+    return true;
 }
 bool save_data(const string& filename, const map<int, list<string>>& hash_table) {
 
