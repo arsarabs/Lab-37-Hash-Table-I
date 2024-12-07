@@ -1,7 +1,7 @@
 // COMSC-210 | Lab 38 | Anthony R. Sarabia
 // IDE used: Visual Studio
 
-//**this is a test message to see if im working on lab 38 seperate branch and not messing with base code of my lab 37
+//yes ok it works :)
 
 #include <iostream>
 #include <string>
