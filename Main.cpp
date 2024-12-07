@@ -147,9 +147,18 @@ void print_entries(const map<int, list<string>>& hash_table) {
     // Iterate through each key-value pair in the hash table
     for (auto it = hash_table.begin(); it != hash_table.end() && entriesDisplayed < MAX_DISPLAY; ++it) {
         // 'it->first' is the hash index, and 'it->second' is the list of codes associated with that index
+        
+        // Iterate through each code in the list associated with the current hash index
+        for (const auto& code : it->second) {
+            cout << "Hash Index: " << it->first << " | Code: " << code << endl; 
+            entriesDisplayed++; // increment  counter as we've displayed another entry
+
+            //and if we've reached the maximum number of entries to display, exit the inner loop
+            if (entriesDisplayed >= MAX_DISPLAY) {
+                break;
+            }
+        }
     }
-
-
 
     // If no entries were displayed 
     if (entriesDisplayed == 0) {
