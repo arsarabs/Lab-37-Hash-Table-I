@@ -167,16 +167,16 @@ void print_entries(const map<int, list<string>>& hash_table) {
 }
 bool search_key(const map<int, list<string>>& hash_table, const string& key) {
     //generate hash index for the given key
-
+    int hash_index = gen_hash_index(key); 
     //attempt to find index in table
 
     //checkc if index exits (in table) & use std 'find' to search for key 
 }
 void add_key(map<int, list<string>>& hash_table, const string& key) {
-
+    //generate hash index for the given key
 }
 bool remove_key(map<int, list<string>>& hash_table, const string& key) {
-
+    //generate hash index for the given key
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
 
