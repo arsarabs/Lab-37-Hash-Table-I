@@ -200,6 +200,13 @@ bool remove_key(map<int, list<string>>& hash_table, const string& key) {
     //generate hash index for the given key
     int hash_index = gen_hash_index(key);
 
+    //attempt to find index in table
+    auto it = hash_table.find(hash_index);
+
+    //use find 
+
+    return false;
+
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
    //testing this
