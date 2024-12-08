@@ -175,15 +175,26 @@ bool search_key(const map<int, list<string>>& hash_table, const string& key) {
     //checkc if index exits (in table) & use std 'find' to search for key 
     if (it != hash_table.end()) {
         const list<string>& codes = it->second;
+
+        //right, need to 'find' 
+        return find(codes.begin(), codes.end(), key) != codes.end();
     }
 
-    //return bool
+    //return bool (assuming key doesnt exist)
+    return false;
 }
 void add_key(map<int, list<string>>& hash_table, const string& key) {
     //generate hash index for the given key
+    int hash_index = gen_hash_index(key);
+
+    //all we need to do different is we need to check to see if key already exists to avoid duplicates. if it doesnt exist,
+    //add it to the list, and if it does exist, then inform user
+
 }
 bool remove_key(map<int, list<string>>& hash_table, const string& key) {
     //generate hash index for the given key
+    int hash_index = gen_hash_index(key);
+
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
 
