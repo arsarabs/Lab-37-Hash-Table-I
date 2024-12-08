@@ -67,14 +67,40 @@ int main() {
             print_entries(hash_table);
             break;
         case 2:
+            cout << "Enter the key to search: ";
+            getline(cin, input_key);
+            if (search_key(hash_table, input_key)) {
+                cout << "Key \"" << input_key << "\" found in the hash table.\n";
+            }
+            else {
+                cout << "Key \"" << input_key << "\" not found.\n";
+            }
             break;
         case 3:
+            cout << "Enter the key to add: ";
+            getline(cin, input_key);
+            add_key(hash_table, input_key);
+            cout << "Key \"" << input_key << "\" added.\n";
             break;
         case 4:
+            cout << "Enter the key to remove: ";
+            getline(cin, input_key);
+            if (remove_key(hash_table, input_key)) {
+                cout << "Key \"" << input_key << "\" removed.\n";
+            }
+            else {
+                cout << "Key \"" << input_key << "\" not found.\n";
+            }
             break;
         case 5:
-            break;
+            break; 
         case 6:
+            if (save_data(DATA_FILE, hash_table)) {
+                cout << "Data saved successfully. Exiting program.\n";
+            }
+            else {
+                cout << "Error saving data. Exiting program without saving.\n";
+            }
             break;
         default:
             cout << "Invalid choice. Please select a number between 1 and 6." << endl;
