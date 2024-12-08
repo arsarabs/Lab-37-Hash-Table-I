@@ -203,9 +203,17 @@ bool remove_key(map<int, list<string>>& hash_table, const string& key) {
     //attempt to find index in table
     auto it = hash_table.find(hash_index);
 
-    //use find 
+    //first check if hash exists 
+    if (it != hash_table.end()) {
 
-    return false;
+
+
+
+        //return true if key successfully found
+        return true;
+    }
+
+    return false; //if not found
 
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
