@@ -189,6 +189,11 @@ void add_key(map<int, list<string>>& hash_table, const string& key) {
 
     //all we need to do different is we need to check to see if key already exists to avoid duplicates. if it doesnt exist,
     //add it to the list, and if it does exist, then inform user
+    if (!search_key(hash_table, key)) {
+        hash_table[hash_index].push_back(key); // add it using push back
+    }else {
+        cout << "Key: " << key << " already exists in hash table" << endl;
+    }
 
 }
 bool remove_key(map<int, list<string>>& hash_table, const string& key) {
