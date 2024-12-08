@@ -202,7 +202,11 @@ bool remove_key(map<int, list<string>>& hash_table, const string& key) {
 
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
+    //remove the old key from table
 
+    //if the old key is succesfully removed, proceed to add the new key
+
+    //otherwise, if not 
 }
 bool load_data(const string& filename, map<int, list<string>>& hash_table, long long& grandTotal, int& lineCount) {
     ifstream infile(filename);
