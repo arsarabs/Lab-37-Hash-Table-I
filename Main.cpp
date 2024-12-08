@@ -131,7 +131,15 @@ int sum_ascii(const string& input) {
 }
 
 int gen_hash_index(const string& input) {
-   
+    // Polynomial rolling hash parameters
+    const int base = 131; // a prime or just a typically used base number greater than character set
+    const int modulus = 10007; // a larger prime number than 97
+
+    long long hash_value = 0;
+    for (char c : input) {
+        hash_value = (hash_value * base + static_cast<unsigned char>(c)) % modulus;
+    }
+    return static_cast<int>(hash_value);
 }
 
 void print_entries(const map<int, list<string>>& hash_table) {
