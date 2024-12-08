@@ -93,6 +93,16 @@ int main() {
             }
             break;
         case 5:
+            cout << "Enter the key to modify: ";
+            getline(cin, input_key);
+            cout << "Enter the new key: ";
+            getline(cin, new_key);
+            if (modify_key(hash_table, input_key, new_key)) {
+                cout << "Key \"" << input_key << "\" modified to \"" << new_key << "\".\n";
+            }
+            else {
+                cout << "Key \"" << input_key << "\" not found.\n";
+            }
             break; 
         case 6:
             if (save_data(DATA_FILE, hash_table)) {
@@ -121,8 +131,7 @@ int sum_ascii(const string& input) {
 }
 
 int gen_hash_index(const string& input) {
-    int ascii_sum = sum_ascii(input);
-    return ascii_sum % MODULUS;
+   
 }
 
 void print_entries(const map<int, list<string>>& hash_table) {
