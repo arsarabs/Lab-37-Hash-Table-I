@@ -206,8 +206,16 @@ bool remove_key(map<int, list<string>>& hash_table, const string& key) {
     //first check if hash exists 
     if (it != hash_table.end()) {
 
+        //well, first we need to retrieve the list
+        list<string>& codes = it->second;
 
 
+        //use find here
+        auto code_it = find(codes.begin(), codes.end(), key);  //find function to locate the key within list
+
+        if (code_it != codes.end()) { //  // If the key is found within the list
+            codes.erase(code_it); // remove key from list
+        }
 
         //return true if key successfully found
         return true;
