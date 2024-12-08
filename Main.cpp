@@ -166,7 +166,11 @@ void print_entries(const map<int, list<string>>& hash_table) {
     }
 }
 bool search_key(const map<int, list<string>>& hash_table, const string& key) {
+    //generate hash index for the given key
 
+    //attempt to find index in table
+
+    //checkc if index exits (in table) & use std 'find' to search for key 
 }
 void add_key(map<int, list<string>>& hash_table, const string& key) {
 
@@ -209,5 +213,18 @@ bool load_data(const string& filename, map<int, list<string>>& hash_table, long 
     return true;
 }
 bool save_data(const string& filename, const map<int, list<string>>& hash_table) {
+    ofstream outfile(filename, ios::trunc); // Open file for writing 
 
+    if (!outfile.is_open()) {
+        cout << "Error! Couldn't open file '" << filename << "' for writing.\n";
+        return false;
+    }
+
+    for (const auto& pair : hash_table) {
+        for (const auto& code : pair.second) {
+            outfile << code << "\n";
+        }
+    }
+    outfile.close(); // Close the file
+    return true;
 }
