@@ -36,92 +36,22 @@ int main() {
     long long grandTotal = 0; // Using long long to accommodate large sums
     int lineCount = 0; // and of course, we keep track of the number of processed lines
     int entriesDisplayed = 0;
-    string test1 = "536B9DFC93AF";
-    string test2 = "1DA9D64D02A0";
-    string test3 = "666D109AA22E";
-    string test4 = "E1D2665B21EA";
+    int choice;
+    string input_key, new_key;
 
     //STEP 3: Creating/populating hash table
     map<int, list<string>> hash_table;
-    int hash_index = gen_hash_index(line);
-
-    //onto the code
-    char a = 'A';
-    cout << "Char a: "<< a << endl;
-    cout << static_cast<int>(a) << endl;
-    int b = 66; 
-    cout << "Int b: " << b << endl;
-    cout << static_cast<char>(b) << endl;
-
-    cout << "----------------------------------------------" << endl;
-
-    //STEP 1 (& and now 3)
     
-    //TEST 1
-    cout << "Sum of ASCII values in \"" << test1 << "\": "
-         << sum_ascii(test1) << endl; // expecting 729
-    cout << "Hash index for \"" << test1 << "\": "
-        << gen_hash_index(test1) << endl; 
 
-    //TEST 2
-    cout << "Sum of ASCII values in \"" << test1 << "\": "
-        << sum_ascii(test2) << endl; // expecting 729
-    cout << "Hash index for \"" << test1 << "\": "
-        << gen_hash_index(test2) << endl;
-
-    //TEST 3
-    cout << "Sum of ASCII values in \"" << test1 << "\": "
-        << sum_ascii(test3) << endl; // expecting 729
-    cout << "Hash index for \"" << test1 << "\": "
-        << gen_hash_index(test3) << endl;
-
-    //TEST 4
-    cout << "Sum of ASCII values in \"" << test1 << "\": "
-        << sum_ascii(test4) << endl; // expecting 729
-    cout << "Hash index for \"" << test1 << "\": "
-        << gen_hash_index(test4) << endl;
-
-    cout << "----------------------------------------------" << endl;
-
-   
-    //STEP 2: Need to process a large dataset
-    
-    if (!infile.is_open()) {
-        cerr << "Error! Couldn't open file '" << DATA_FILE << endl;
-        cerr << "ensure file exists in the correct directory/or try again." << endl;
-        return 1; // Exit the program with an error code
+    // Load data from file
+    if (!load_data(DATA_FILE, hash_table, grandTotal, lineCount)) {
+        cerr << "Error loading data. Exiting program." << endl;
+        return 1;
     }
 
-    while (getline(infile, line)) {
+    do {
 
-        //first, validate length of line
-
-        if (line.length() != 12) {
-            cout << "Warning: Skipping invalid line " << (lineCount + 1)
-                << " (Incorrect length: " << line.length() << ")" << endl;
-            continue;
-        }
-
-        //next
-        hash_table[hash_index].push_back(line); // this adds the current string 
-        // (`line`) to the list corresponding to `hash_index` in the hash table
-        lineCount++; //increment line count
-
-        // Calculate the ASCII sum for the current line and add it to grand_total
-        grandTotal += sum_ascii(line);
-        lineCount++;
-    }
-    infile.close(); //close file
-
-    //OUTPUT (first 100 map entries)
-    for (auto it = hash_table.begin(); it != hash_table.end() && entriesDisplayed < MAX_DISPLAY; ++it, ++entriesDisplayed) {
-        cout << "Hash Index: " << it->first << endl;
-        cout << "Associated Codes:" << endl;
-        for (const auto& code : it->second) {
-            cout << "  " << code << endl;
-        }
-        cout << "-----------------------------" << endl;
-    }
+    } while (choice != 6);
     
     return 0;
 }
@@ -197,31 +127,34 @@ void add_key(map<int, list<string>>& hash_table, const string& key) {
 
 }
 bool remove_key(map<int, list<string>>& hash_table, const string& key) {
-    //generate hash index for the given key
+    // Generate the hash index for the given key using the hashing function
     int hash_index = gen_hash_index(key);
 
-    //attempt to find index in table
+    // Attempt to find the hash index in the hash table
     auto it = hash_table.find(hash_index);
 
-    //first check if hash exists 
+    // Check if the hash index exists in the hash table
     if (it != hash_table.end()) {
+        list<string>& codes = it->second; // Retrieve the list of codes associated with the hash index
 
-        //well, first we need to retrieve the list
-        list<string>& codes = it->second;
+        // Use the standard library's 'find' function to locate the key within the list of codes
+        auto code_it = find(codes.begin(), codes.end(), key);
 
+        // If the key is found within the list
+        if (code_it != codes.end()) {
+            codes.erase(code_it); // Remove the key from the list
 
-        //use find here
-        auto code_it = find(codes.begin(), codes.end(), key);  //find function to locate the key within list
+            // After removal, check if the list is empty
+            if (codes.empty()) {
+                hash_table.erase(it); // If empty, remove the hash index from the map to clean up
+            }
 
-        if (code_it != codes.end()) { //  // If the key is found within the list
-            codes.erase(code_it); // remove key from list
+            return true; // Indicate that the key was successfully removed
         }
-
-        //return true if key successfully found
-        return true;
     }
 
-    return false; //if not found
+    // If the hash index or the key within it was not found, return false
+    return false;
 
 }
 bool modify_key(map<int, list<string>>& hash_table, const string& old_key, const string& new_key) {
